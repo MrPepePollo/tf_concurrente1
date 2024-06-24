@@ -1,17 +1,10 @@
-<div *ngFor="let cluster of clusters">
-  <p>Centroid: {{cluster.Centroid}}</p>
+<div *ngIf="loadingData">Cargando datos...</div>
+<div *ngIf="sendingRequest">Enviando solicitud al servidor...</div>
+<div *ngIf="requestComplete">
+  <div *ngFor="let cluster of clusters">
+    <h2>Cluster:</h2>
+    <p>Centroid: {{cluster.Centroid}}</p>
+    <p>Sum: {{cluster.Sum}}</p>
+    <p>Count: {{cluster.Count}}</p>
+  </div>
 </div>
-<button (click)="startProcess()">Start Process</button>
-
-<ng-container matColumnDef="Centroid">
-  <mat-header-cell *matHeaderCellDef> Centroid </mat-header-cell>
-  <mat-cell *matCellDef="let cluster"> {{ cluster.Centroid }} </mat-cell>
-</ng-container>
-<ng-container matColumnDef="Sum">
-  <mat-header-cell *matHeaderCellDef> Sum </mat-header-cell>
-  <mat-cell *matCellDef="let cluster"> {{ cluster.Sum }} </mat-cell>
-</ng-container>
-<ng-container matColumnDef="Count">
-  <mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-  <mat-cell *matCellDef="let cluster"> {{ cluster.Count }} </mat-cell>
-</ng-container>

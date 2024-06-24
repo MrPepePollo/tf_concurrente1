@@ -12,9 +12,16 @@ export interface Cluster {
   providedIn: 'root'
 })
 export class KmeansService {
+  private url = "http://localhost:8080/api/kmeans";
+  private datasetUrl = "https://raw.githubusercontent.com/MrPepePollo/TF_Concurrente/master/SocialNetworkDataset.csv";
+
   constructor(private http: HttpClient) { }
 
-  startProcess(): Observable<Cluster[]> {
-    return this.http.get<Cluster[]>('http://localhost:8081/start');
+  loadDataset(): Observable<string> {
+    return this.http.get(this.datasetUrl, { responseType: 'text' });
+  }
+
+  getKMeans(data: any): Observable<Cluster[]> {
+    return this.http.post<Cluster[]>(this.url, data);
   }
 }

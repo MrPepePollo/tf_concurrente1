@@ -1,11 +1,9 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { KmeansService } from './kmeans.service';
 
 @NgModule({
   declarations: [
@@ -13,14 +11,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MatTableModule
+    HttpClientModule
   ],
-  providers: [
-    provideClientHydration(),
-    provideHttpClient(),
-    provideAnimationsAsync()
-  ],
+  providers: [KmeansService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
